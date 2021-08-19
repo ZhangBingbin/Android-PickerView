@@ -39,7 +39,7 @@ public class WheelView extends View {
     }
 
     public enum DividerType { // 分隔线类型
-        FILL, WRAP, CIRCLE
+        FILL, WRAP, CIRCLE,RECT
     }
 
     private static final String[] TIME_NUM = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09"};
@@ -434,6 +434,10 @@ public class WheelView extends View {
             //半径始终以宽高中最大的来算
             float radius = Math.max((endX - startX), itemHeight) / 1.8f;
             canvas.drawCircle(measuredWidth / 2f, measuredHeight / 2f, radius, paintIndicator);
+        }else if (dividerType==DividerType.RECT){
+            //分割线为实心矩形
+            paintIndicator.setStyle(Paint.Style.FILL);
+            canvas.drawRect(0.0F,firstLineY,(float)measuredWidth,secondLineY,paintIndicator);
         } else {
             canvas.drawLine(0.0F, firstLineY, measuredWidth, firstLineY, paintIndicator);
             canvas.drawLine(0.0F, secondLineY, measuredWidth, secondLineY, paintIndicator);
